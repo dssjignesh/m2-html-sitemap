@@ -1,0 +1,53 @@
+<?php
+/**
+* Digit Software Solutions..
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+*
+* @category   Dss
+* @package    Dss_HtmlSiteMap
+* @author     Extension Team
+* @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+*/
+?>
+<?php
+/**
+ * SEO Toolbar template
+ *
+ * @var $block Dss\HtmlSiteMap\Block\ItemsCollection
+ */
+?>
+<?php
+    $helper = $block->getHelper();
+    $additionUrl = $helper->getAdditionUrl();
+    $titleAddition = $helper->titleAddition();
+    $openNewTab = $helper->openNewTab();
+    $additionUrlCount = $additionUrl;
+
+    $additionLink = $block->getAdditionLink();
+if ($additionUrlCount != null): ?>
+        <h2 class="dss_h2"><?= /* @noEscape */ $titleAddition; ?></h2>
+        <div class="dss_site_map_grid">
+        <?php
+        foreach ($additionLink as $value => $link): ?>
+            <?php
+            if ($value % 2 == 1): ?>
+                    <div class="col-dss-3"><h3 class="dss_product_list">
+                    <a href="<?= /* @noEscape */ $link; ?>"
+                <?php
+            else:
+                ?> title="<?= /* @noEscape */ $link; ?>"
+                <?php
+                if ($openNewTab == 1) {
+                    echo 'target="_blank"';
+                } ?>><?= /* @noEscape */ $link; ?></a>
+                    </h3></div>
+                <?php
+            endif; ?>
+            <?php
+        endforeach; ?>
+        </div>
+<?php endif;

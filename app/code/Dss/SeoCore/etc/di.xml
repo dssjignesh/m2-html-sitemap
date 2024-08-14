@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Digit Software Solutions..
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category   Dss
+ * @package    Dss_SeoCore
+ * @author     Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Model\Category\DataProvider"
+        type="Dss\SeoCore\Plugin\Model\Category\DataProvider" />
+    <type name="Magento\Theme\Block\Html\Title">
+        <plugin name="dss_seo_core_h1_cms_category" type="Dss\SeoCore\Plugin\Model\Product"/>
+    </type>
+</config>

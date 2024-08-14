@@ -1,0 +1,62 @@
+<?php
+/**
+* Digit Software Solutions..
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+*
+* @category   Dss
+* @package    Dss_HtmlSiteMap
+* @author     Extension Team
+* @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+*/
+?>
+<?php
+/**
+ * SEO Toolbar template
+ *
+ * @var $block Dss\HtmlSiteMap\Block\ItemsCollection
+ */
+?>
+<?php
+$helper = $block->getHelper();
+
+//Store View Link
+$additionUrl = $helper->getAdditionUrl();
+$baseUrl = $helper->getBaseUrl();
+$enableStoreView = $helper->isEnableStoreView();
+$titleStore = $helper->titleStore();
+?>
+<?php
+if ($enableStoreView): ?>
+    <h2 class="dss_h2"><?= /* @noEscape */  $titleStore; ?></h2>
+    <div class="dss_site_map_grid">
+    <?php
+    foreach ($block->getGroups() as $group): ?>
+        <div class="dss_h3">
+            <a href="<?= /* @noEscape */  $baseUrl; ?>"
+               data-post='<?= /* @noEscape */ $block->getTargetStorePostData($group->getDefaultStore()); ?>'>
+                <?= $escaper->escapeHtml($group->getName()) ?>
+            </a>
+        </div>
+        <br/>
+        <?php foreach ($group->getStores() as $lang): ?>
+            <?php if (!$lang->isActive()): ?>
+                <?php continue; ?>
+            <?php endif; ?>
+            <div class="col-dss-3">
+                <h3 class="dss_product_list view-<?= $escaper->escapeHtml($lang->getCode()) ?>">
+                    <a href="<?= $escaper->escapeUrl($block->getTargetStoreRedirectUrl($lang)) ?>">
+                        <?= $escaper->escapeHtml($lang->getName()) ?>
+                    </a>
+                </h3>
+            </div>
+        <?php endforeach; ?>
+
+        <?php
+    endforeach; ?>
+    </div>
+    <?php
+endif; ?>
