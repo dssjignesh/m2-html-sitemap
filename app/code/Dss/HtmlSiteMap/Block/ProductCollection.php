@@ -20,7 +20,7 @@ namespace Dss\HtmlSiteMap\Block;
 
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Dss\HtmlSiteMap\Helper\Data;
-use \Magento\Backend\Block\Template\Context;
+use Magento\Backend\Block\Template\Context;
 
 class ProductCollection extends \Magento\Framework\View\Element\Template
 {

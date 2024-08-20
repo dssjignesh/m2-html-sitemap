@@ -20,7 +20,6 @@ namespace Dss\HtmlSiteMap\Controller\Index;
 
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\App\Response\Http;
 use Magento\Framework\UrlInterface;
 use Dss\HtmlSiteMap\Helper\Data;
 use Magento\Framework\App\RequestInterface;

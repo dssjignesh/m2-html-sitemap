@@ -34,7 +34,7 @@ class Data extends AbstractHelper
      * @param StoreManagerInterface $storeManager
      */
     public function __construct(
-        protected Context $context,
+        Context $context,
         public PostHelper $postDataHelper,
         protected StoreManagerInterface $storeManager
     ) {

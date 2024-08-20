@@ -23,6 +23,8 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Psr\Log\LoggerInterface;
+use Magento\Catalog\Model\Category;
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 
 class CategoryAttribute implements DataPatchInterface
 {
@@ -50,16 +52,16 @@ class CategoryAttribute implements DataPatchInterface
         try {
             /** @var EavSetup $eavSetup */
             $eavSetup = $this->eavSetupFactory->create(['seo_h1_title' => $this->moduleDataSetup]);
-            $entityTypeId = $eavSetup->getEntityTypeId(\Magento\Catalog\Model\Category::ENTITY);
+            $entityTypeId = $eavSetup->getEntityTypeId(Category::ENTITY);
             $attributeSetId = $eavSetup->getDefaultAttributeSetId($entityTypeId);
-            $eavSetup->addAttribute(\Magento\Catalog\Model\Category::ENTITY, 'seo_h1_title', [
+            $eavSetup->addAttribute(Category::ENTITY, 'seo_h1_title', [
                 'type' => 'varchar',
                 'label' => 'Custom H1 Page',
                 'input' => 'text',
                 'source' => '',
                 'required' => false,
                 'sort_order' => 610,
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
+                'global' => ScopedAttributeInterface::SCOPE_STORE,
                 'group' => 'Search Engine Optimization',
                 'note' => 'This new heading 1 will replace the original h1 of your page'
             ]);

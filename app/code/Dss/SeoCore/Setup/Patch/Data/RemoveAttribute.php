@@ -24,6 +24,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Catalog\Model\Product;
 use Psr\Log\LoggerInterface;
+use Magento\Catalog\Model\Category;
 
 class RemoveAttribute implements DataPatchInterface
 {
@@ -51,7 +52,7 @@ class RemoveAttribute implements DataPatchInterface
             $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
             $eavSetup->removeAttribute(Product::ENTITY, 'seo_h1_title');
-            $eavSetup->removeAttribute(\Magento\Catalog\Model\Category::ENTITY, 'seo_h1_title');
+            $eavSetup->removeAttribute(Category::ENTITY, 'seo_h1_title');
         } catch (\Exception $e) {
             $this->logger->critical($e);
         }

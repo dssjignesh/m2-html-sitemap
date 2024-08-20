@@ -24,6 +24,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Catalog\Model\Product;
 use Psr\Log\LoggerInterface;
+use Magento\Catalog\Model\Category;
 
 class RemoveAttribute implements DataPatchInterface
 {
@@ -51,7 +52,7 @@ class RemoveAttribute implements DataPatchInterface
             $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
             $eavSetup->removeAttribute(Product::ENTITY, 'excluded_html_sitemap');
-            $eavSetup->removeAttribute(\Magento\Catalog\Model\Category::ENTITY, 'excluded_html_sitemap');
+            $eavSetup->removeAttribute(Category::ENTITY, 'excluded_html_sitemap');
         } catch (\Exception $e) {
             $this->logger->critical($e);
         }

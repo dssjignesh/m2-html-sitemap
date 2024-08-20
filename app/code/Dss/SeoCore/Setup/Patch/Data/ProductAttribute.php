@@ -62,7 +62,7 @@ class ProductAttribute implements DataPatchInterface
                 'input' => 'text',
                 'class' => '',
                 'source' => '',
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
+                'global' => ScopedAttributeInterface::SCOPE_STORE,
                 'visible' => true,
                 'required' => false,
                 'user_defined' => false,

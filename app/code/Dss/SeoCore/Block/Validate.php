@@ -41,9 +41,9 @@ class Validate extends \Magento\Framework\View\Element\Template
     /**
      * Get helper
      *
-     * @return \Dss\SeoCore\Helper\Data
+     * @return Data
      */
-    public function getHelper(): \Dss\SeoCore\Helper\Data
+    public function getHelper(): Data
     {
         return $this->dataHelper;
     }
