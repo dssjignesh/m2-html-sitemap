@@ -16,21 +16,14 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
  */
 
-
 namespace Dss\HtmlSiteMap\Block;
 
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Dss\HtmlSiteMap\Helper\Data;
 use \Magento\Backend\Block\Template\Context;
 
 class ProductCollection extends \Magento\Framework\View\Element\Template
 {
-    /**
-     * @var ScopeConfigInterface
-     */
-    public $scopeConfig;
-
     /**
      * ItemsCollection constructor.
      *
@@ -45,16 +38,15 @@ class ProductCollection extends \Magento\Framework\View\Element\Template
         public Data $helper,
         array $data = []
     ) {
-        $this->scopeConfig = $context->getScopeConfig();
         parent::__construct($context, $data);
     }
 
     /**
      * Get Helper value
      *
-     * @return \Dss\HtmlSiteMap\Helper\Data
+     * @return Data
      */
-    public function getHelper(): \Dss\HtmlSiteMap\Helper\Data
+    public function getHelper(): Data
     {
         return $this->helper;
     }

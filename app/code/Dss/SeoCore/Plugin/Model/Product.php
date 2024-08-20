@@ -29,13 +29,13 @@ class Product
     /**
      * Product constructor.
      *
-     * @param CoreRegistry $registry
+     * @param CoreRegistry $coreRegistry
      * @param Http $request
      * @param Page $page
      * @param Data $dataHelper
      */
     public function __construct(
-        protected CoreRegistry $registry,
+        protected CoreRegistry $coreRegistry,
         protected Http $request,
         protected Page $page,
         protected Data $dataHelper

@@ -31,11 +31,9 @@ class AddSitemap implements ObserverInterface
      * @param ItemsCollection $siteMapBlock
      */
     public function __construct(
-        private Data $dataHelper,
-        private ItemsCollection $siteMapBlock
+        protected Data $dataHelper,
+        protected ItemsCollection $siteMapBlock
     ) {
-        $this->siteMapBlock = $siteMapBlock;
-        $this->dataHelper = $dataHelper;
     }
 
     /**

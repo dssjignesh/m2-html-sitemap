@@ -27,7 +27,6 @@ class Order implements \Magento\Framework\Option\ArrayInterface
      */
     public function toOptionArray(): array
     {
-
         return [
             ['value' => 'asc', 'label' => __('ASC')],
             ['value' => 'desc', 'label' => __('DESC')],

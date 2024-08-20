@@ -14,7 +14,6 @@
  */ -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="sitemap_index_index" />
     <body>
         <referenceContainer name="content">
             <block class="Dss\HtmlSiteMap\Block\CategoryCollection" name="category_list_template"

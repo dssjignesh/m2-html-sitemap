@@ -24,6 +24,8 @@ use Magento\Catalog\Helper\Category;
 use Dss\HtmlSiteMap\Helper\Data;
 use Magento\Cms\Model\PageFactory;
 use Magento\Catalog\Model\Indexer\Category\Flat\State;
+use Magento\Catalog\Model\ResourceModel\Category\Collection;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class CategoryCollection extends \Magento\Framework\View\Element\Template
 {
@@ -64,9 +66,9 @@ class CategoryCollection extends \Magento\Framework\View\Element\Template
     /**
      * Get Helper Data
      *
-     * @return \Dss\HtmlSiteMap\Helper\Data
+     * @return Data
      */
-    public function getHelper(): \Dss\HtmlSiteMap\Helper\Data
+    public function getHelper(): Data
     {
         return $this->helper;
     }
@@ -75,11 +77,11 @@ class CategoryCollection extends \Magento\Framework\View\Element\Template
      * Get Category collection
      *
      * @param bool $isActive
-     * @return \Magento\Catalog\Model\ResourceModel\Category\Collection
+     * @return Collection
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getCategoryCollection($isActive = true): \Magento\Catalog\Model\ResourceModel\Category\Collection
+    public function getCategoryCollection($isActive = true): Collection
     {
         $rootCategoryIds = [];
         $currentWebsiteId = $this->_storeManager->getStore()->getWebsiteId();
@@ -105,9 +107,9 @@ class CategoryCollection extends \Magento\Framework\View\Element\Template
     /**
      * Get Category helper
      *
-     * @return \Magento\Catalog\Helper\Category
+     * @return Category
      */
-    public function getCategoryHelper(): \Magento\Catalog\Helper\Category
+    public function getCategoryHelper(): Category
     {
         return $this->categoryHelper;
     }
@@ -115,10 +117,10 @@ class CategoryCollection extends \Magento\Framework\View\Element\Template
     /**
      * Get Cms page
      *
-     * @return \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+     * @return AbstractCollection
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getCmsPages(): \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+    public function getCmsPages(): AbstractCollection
     {
         $storeId = $this->getStoreId();
         $this->getStoreId();

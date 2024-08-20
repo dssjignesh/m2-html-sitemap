@@ -28,7 +28,6 @@ use Dss\SeoCore\Helper\Data as SeoCoreHelper;
 
 class AfterCategorySave implements ObserverInterface
 {
-
     /**
      * AfterCategorySave constructor.
      *

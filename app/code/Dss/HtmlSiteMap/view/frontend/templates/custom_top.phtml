@@ -1,17 +1,17 @@
 <?php
-/**
-* Digit Software Solutions..
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the EULA
-* that is bundled with this package in the file LICENSE.txt.
-*
-* @category   Dss
-* @package    Dss_HtmlSiteMap
-* @author     Extension Team
-* @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
-*/
+   /**
+    * Digit Software Solutions..
+    *
+    * NOTICE OF LICENSE
+    *
+    * This source file is subject to the EULA
+    * that is bundled with this package in the file LICENSE.txt.
+    *
+    * @category   Dss
+    * @package    Dss_HtmlSiteMap
+    * @author     Extension Team
+    * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+    */
 ?>
 <?php
 /**
@@ -31,8 +31,7 @@ $showLinkAt = $helper->getShowLinkAt();
 <?php if ($getEnable && $showLinkAt === 'top'): ?>
     <li>
         <a href="<?= /* @noEscape */  $baseUrl . $urlKey; ?>">
-            <?= /* @noEscape */  $escaper->escapeHtml($titleSiteMap); ?>
+            <?= $escaper->escapeHtml($titleSiteMap); ?>
         </a>
     </li>
-    <?php
-endif;
+<?php endif; ?>

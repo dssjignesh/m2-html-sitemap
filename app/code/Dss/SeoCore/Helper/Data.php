@@ -66,9 +66,9 @@ class Data extends AbstractHelper
     /**
      * Get store manager
      *
-     * @return \Magento\Store\Model\StoreManagerInterface
+     * @return StoreManagerInterface
      */
-    public function getStoreManager(): \Magento\Store\Model\StoreManagerInterface
+    public function getStoreManager(): StoreManagerInterface
     {
         return $this->storeManager;
     }

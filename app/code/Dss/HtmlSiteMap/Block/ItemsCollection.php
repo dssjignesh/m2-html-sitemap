@@ -22,12 +22,11 @@ use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Url\EncoderInterface;
 use Magento\Framework\Url\Helper\Data as UrlHelper;
 use Magento\Store\Model\Store;
-use \Magento\Backend\Block\Template\Context;
-use Magento\Catalog\Model\CategoryFactory;
-use \Magento\Store\Block\Switcher\Interceptor;
+use Magento\Backend\Block\Template\Context;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Dss\HtmlSiteMap\Helper\Data;
 use Magento\Framework\Data\Helper\PostHelper;
+use Magento\Store\Model\ScopeInterface;
 
 class ItemsCollection extends \Magento\Framework\View\Element\Template
 {
@@ -39,11 +38,6 @@ class ItemsCollection extends \Magento\Framework\View\Element\Template
     public const ADDITIONAL_LIST_NUMBER = '3';
     public const CATE_AND_CMS_NUMBER = '4';
     public const XML_PATH_DEFAULT_LOCALE = 'general/locale/code';
-
-    /**
-     * @var ScopeConfigInterface
-     */
-    public $scopeConfig;
 
     /**
      * @var bool
@@ -58,6 +52,7 @@ class ItemsCollection extends \Magento\Framework\View\Element\Template
      * @param PostHelper $postDataHelper
      * @param EncoderInterface $encoder
      * @param UrlHelper $urlHelper
+     * @param ScopeConfigInterface $scopeConfig
      * @param array $data
      */
     public function __construct(
@@ -66,9 +61,9 @@ class ItemsCollection extends \Magento\Framework\View\Element\Template
         protected PostHelper $postDataHelper,
         protected EncoderInterface $encoder,
         protected UrlHelper $urlHelper,
+        protected ScopeConfigInterface $scopeConfig,
         array $data = []
     ) {
-        $this->scopeConfig = $context->getScopeConfig();
         parent::__construct($context, $data);
     }
 
@@ -86,9 +81,9 @@ class ItemsCollection extends \Magento\Framework\View\Element\Template
     /**
      * Get Helper
      *
-     * @return \Dss\HtmlSiteMap\Helper\Data
+     * @return Data
      */
-    public function getHelper(): \Dss\HtmlSiteMap\Helper\Data
+    public function getHelper(): Data
     {
         return $this->helper;
     }
@@ -206,9 +201,10 @@ class ItemsCollection extends \Magento\Framework\View\Element\Template
                 if (!$store->isActive()) {
                     continue;
                 }
-                $localeCode = $this->_scopeConfig->getValue(
+                $localeCode =
+                $this->scopeConfig->getValue(
                     self::XML_PATH_DEFAULT_LOCALE,
-                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+                    ScopeInterface::SCOPE_STORE,
                     $store
                 );
                 $store->setLocaleCode($localeCode);
@@ -263,9 +259,9 @@ class ItemsCollection extends \Magento\Framework\View\Element\Template
             $rawStores = $this->getRawStores();
 
             $groups = [];
-            $localeCode = $this->_scopeConfig->getValue(
+            $localeCode = $this->scopeConfig->getValue(
                 self::XML_PATH_DEFAULT_LOCALE,
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+                ScopeInterface::SCOPE_STORE
             );
             foreach ($rawGroups as $group) {
                 if (!isset($rawStores[$group->getId()])) {

@@ -18,8 +18,8 @@ declare(strict_types=1);
 
 namespace Dss\HtmlSiteMap\Helper;
 
-use Magento\Framework\App\Helper\Context;
 use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory;
+use Magento\Framework\App\Helper\Context;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
@@ -27,6 +27,20 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public const SORT_PRODUCT = 'dss_htmlsitemap/product/sort_product';
     public const ORDER_PRODUCT = 'dss_htmlsitemap/product/order_product';
     public const DEFAULT_URL_KEY = 'sitemap';
+
+    /**
+     * Cache
+     *
+     * @var bool
+     */
+    protected $configWithoutCache = false;
+
+    /**
+     * Store value
+     *
+     * @var bool
+     */
+    protected $categoryStorevalue = false;
 
     /**
      * @var string
@@ -40,17 +54,17 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param CollectionFactory $configFactory
      */
     public function __construct(
-        protected Context $context,
+        Context $context,
         protected CollectionFactory $configFactory
     ) {
         parent::__construct($context);
     }
 
-    /**
-     * Get AdditionalUrl
-     *
-     * @return mixed|string
-     */
+   /**
+    * Get AdditionalUrl
+    *
+    * @return mixed|string
+    */
     public function getAdditionUrl(): string
     {
         $additionUrl = $this->scopeConfig->getValue('dss_htmlsitemap/addition/addition_link', $this->scopeStore);
@@ -209,16 +223,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $collection->addFieldToFilter('scope', 'default');
             $collection->addFieldToFilter('scope_id', '0');
         }
-        $categoryDisable = false;
+        $this->configWithoutCache = false;
         if ($collection->getSize()) {
             $valueStoreArray = $this->getValueStore($collection, $storeId);
             $defaultValue = $valueStoreArray['default_value'];
-            $categoryDisable = $valueStoreArray['store_value'];
-            if ($categoryDisable === false) {
-                $categoryDisable = $defaultValue;
+            $this->configWithoutCache = $valueStoreArray['store_value'];
+            if ($this->configWithoutCache === false) {
+                $this->configWithoutCache = $defaultValue;
             }
         }
-        return $categoryDisable;
+        return $this->configWithoutCache;
     }
 
     /**
@@ -230,22 +244,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     protected function getValueStore($collection, $storeId): array
     {
-        $categoryDisable = false;
+        $this->categoryStorevalue = false;
         $defaultValue = '';
         foreach ($collection as $item) {
             if ((int)$storeId === 0) {
-                $categoryDisable = $item->getValue();
+                $this->categoryStorevalue = $item->getValue();
             }
             if ((int)$item->getScopeId() === 0 && $item->getScope() == 'default') {
                 $defaultValue = $item->getValue();
             }
             if ((int)$storeId !== 0 && (int)$item->getScopeId() === (int)$storeId) {
-                $categoryDisable = $item->getValue();
+                $this->categoryStorevalue = $item->getValue();
             }
         }
         return [
             'default_value' => $defaultValue,
-            'store_value' => $categoryDisable
+            'store_value' => $this->categoryStorevalue
         ];
     }
 
@@ -318,9 +332,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Order Template
      *
-     * @return mixed|string
+     * @return mixed|string|null
      */
-    public function orderTemplates(): string
+    public function orderTemplates(): string|null
     {
         $orderTemplates = $this->scopeConfig->getValue('dss_htmlsitemap/general/order_templates', $this->scopeStore);
 

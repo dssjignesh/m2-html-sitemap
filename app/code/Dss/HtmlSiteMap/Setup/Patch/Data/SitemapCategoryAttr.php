@@ -23,6 +23,9 @@ use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Catalog\Model\Category;
+use Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend;
+use Dss\HtmlSiteMap\Model\Config\Product\ExcludeHtmlSiteMap;
 
 class SitemapCategoryAttr implements DataPatchInterface
 {
@@ -47,19 +50,19 @@ class SitemapCategoryAttr implements DataPatchInterface
     {
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $entityTypeId = $eavSetup->getEntityTypeId(\Magento\Catalog\Model\Category::ENTITY);
+        $entityTypeId = $eavSetup->getEntityTypeId(Category::ENTITY);
         $attributeSetId = $eavSetup->getDefaultAttributeSetId($entityTypeId);
-        $eavSetup->addAttribute(\Magento\Catalog\Model\Category::ENTITY, 'excluded_html_sitemap', [
+        $eavSetup->addAttribute(Category::ENTITY, 'excluded_html_sitemap', [
             'sort_order' => 630,
             'note' => '',
             'group' => 'Search Engine Optimization',
             'type' => 'text',
-            'backend' => \Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend::class,
+            'backend' => ArrayBackend::class,
             'frontend' => '',
             'label' => 'Excluded from HTML Sitemap',
             'input' => 'select',
             'class' => '',
-            'source' => \Dss\HtmlSiteMap\Model\Config\Product\ExcludeHtmlSiteMap::class,
+            'source' => ExcludeHtmlSiteMap::class,
             'global' => ScopedAttributeInterface::SCOPE_STORE,
             'visible' => true,
             'required' => false,

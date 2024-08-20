@@ -18,13 +18,13 @@ declare(strict_types=1);
 
 namespace Dss\HtmlSiteMap\Controller\Index;
 
-use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Response\Http;
 use Magento\Framework\UrlInterface;
 use Dss\HtmlSiteMap\Helper\Data;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\App\Action\Context;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
@@ -38,7 +38,7 @@ class Index extends \Magento\Framework\App\Action\Action
      * @param UrlInterface $url
      */
     public function __construct(
-        protected Context $context,
+        Context $context,
         protected PageFactory $resultPageFactory,
         private RequestInterface $request,
         protected Data $helper,

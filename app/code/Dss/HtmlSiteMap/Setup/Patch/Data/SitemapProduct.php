@@ -25,6 +25,8 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Catalog\Model\Product;
 use Psr\Log\LoggerInterface;
+use Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend;
+use Dss\HtmlSiteMap\Model\Config\Product\ExcludeHtmlSiteMap;
 
 class SitemapProduct implements DataPatchInterface
 {
@@ -56,12 +58,12 @@ class SitemapProduct implements DataPatchInterface
             $eavSetup->addAttribute(Product::ENTITY, 'excluded_html_sitemap', [
                 'group' => 'Search Engine Optimization',
                 'type' => 'text',
-                'backend' => \Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend::class,
+                'backend' => ArrayBackend::class,
                 'frontend' => '',
                 'label' => 'Excluded from HTML Sitemap',
                 'input' => 'select',
                 'class' => '',
-                'source' => \Dss\HtmlSiteMap\Model\Config\Product\ExcludeHtmlSiteMap::class,
+                'source' => ExcludeHtmlSiteMap::class,
                 'global' => ScopedAttributeInterface::SCOPE_STORE,
                 'visible' => true,
                 'required' => false,

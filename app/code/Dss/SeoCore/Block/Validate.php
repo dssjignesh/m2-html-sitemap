@@ -32,7 +32,7 @@ class Validate extends \Magento\Framework\View\Element\Template
      */
     public function __construct(
         private Data $dataHelper,
-        protected Context $context,
+        Context $context,
         array $data = []
     ) {
         parent::__construct($context, $data);
