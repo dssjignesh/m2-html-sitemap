@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Digit Software Solutions..
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category   Dss
+ * @package    Dss_HtmlSiteMap
+ * @author     Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links">
+            <block class="Dss\HtmlSiteMap\Block\ItemsCollection" name="custom_block_top"
+                as="custom_block_top" template="Dss_HtmlSiteMap::custom_top.phtml" before="-"/>
+        </referenceBlock>
+        <referenceBlock name="footer_links">
+            <block class="Dss\HtmlSiteMap\Block\ItemsCollection" name="custom_block"
+                as="custom_block" template="Dss_HtmlSiteMap::custom.phtml" after="-"/>
+        </referenceBlock>
+    </body>
+</page>
