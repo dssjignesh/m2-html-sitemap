@@ -24,6 +24,7 @@ use Magento\Framework\UrlInterface;
 use Dss\HtmlSiteMap\Helper\Data;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
@@ -51,9 +52,9 @@ class Index extends \Magento\Framework\App\Action\Action
     /**
      * Execute
      *
-     * @return $this|\Magento\Framework\View\Result\Page
+     * @return ResultInterface
      */
-    public function execute(): \Magento\Framework\View\Result\Page
+    public function execute(): ResultInterface
     {
         $redirectUrl= $this->url->getUrl('');
         $isEnabled = $this->helper->isEnable();
