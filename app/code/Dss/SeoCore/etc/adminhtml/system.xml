@@ -28,7 +28,7 @@
                     <label>Enable Custom H1 Page</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>
-                        <![CDATA[Version 1.0.7<br/>This new heading 1 will replace the original h1 of category,
+                        <![CDATA[Version 0.0.1<br/>This new heading 1 will replace the original h1 of category,
                         CMS page & product page]]>
                     </comment>
                 </field>
